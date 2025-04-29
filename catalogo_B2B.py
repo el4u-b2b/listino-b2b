@@ -136,7 +136,7 @@ if st.session_state.page > total_pages:
     st.session_state.page = 1
 paginated, start_idx, end_idx = get_paginated_data(filtered, st.session_state.page)
 
-# === Titolo principale ===
+# === Titolo finestra ===
 st.title("Listino Prodotti B2B")
 
 # === Tabella ===
