@@ -11,7 +11,7 @@ import numpy as np
 SMTP_SERVER = "smtp.office365.com"
 SMTP_PORT = 587
 SMTP_USER = "info@el4u.it"
-SMTP_PASSWORD = "Inf_365el4u"
+SMTP_PASSWORD = st.secrets["SMTP_PASSWORD"]
 EMAIL_DESTINATARIO = "info@el4u.it"
 
 st.set_page_config(page_title="Listino B2B", layout="wide")
