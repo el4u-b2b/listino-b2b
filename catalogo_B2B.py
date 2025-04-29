@@ -241,7 +241,7 @@ if st.session_state.show_offer_form:
 Gentile {azienda},<br>Grazie per averci contattato. Ecco il riepilogo della sua richiesta:<br><br>
 <b>Dati Cliente:</b><br>Email: {email_cliente}<br>Telefono: {telefono}<br><br>
 <table border='1' cellspacing='0' cellpadding='5'>
-<tr><th>SKU</th><th>Descrizione</th><th>Marchio</th><th>Prezzo B2B i.c.</th><th>Prezzo Pubblico</th><th>Quantità</th></tr>
+<tr><th>sku</th><th>Descrizione</th><th>Marchio</th><th>Prezzo B2B i.c.</th><th>Prezzo Pubblico</th><th>Quantità</th></tr>
 """
                 for sku, info in st.session_state.selected_products.items():
                     corpo_html += f"<tr><td>{info['sku']}</td><td>{info['Descrizione']}</td><td>{info['Marchio']}</td><td>{info['Prezzo B2B i.c.']} €</td><td>{info['Prezzo pubblico']} €</td><td>{info['Quantità']}</td></tr>"
