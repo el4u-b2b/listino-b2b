@@ -244,7 +244,7 @@ Gentile {azienda},<br>Grazie per averci contattato. Ecco il riepilogo della sua 
 <tr><th>SKU</th><th>Descrizione</th><th>Marchio</th><th>Prezzo B2B i.c.</th><th>Prezzo Pubblico</th><th>Quantità</th></tr>
 """
                 for sku, info in st.session_state.selected_products.items():
-                    corpo_html += f"<tr><td>{info['sku']}</td><td>{info['descrizione']}</td><td>{info['marchio']}</td><td>{info['prezzo']} €</td><td>{info['pubblico']} €</td><td>{info['quantita']}</td></tr>"
+                    corpo_html += f"<tr><td>{info['sku']}</td><td>{info['Descrizione']}</td><td>{info['Marchio']}</td><td>{info['Prezzo B2B i.c.']} €</td><td>{info['Prezzo pubblico']} €</td><td>{info['Quantità']}</td></tr>"
                 corpo_html += """
 </table><br>
 Il nostro staff la contatterà a breve per un'offerta personalizzata.<br><br>
