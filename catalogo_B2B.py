@@ -16,7 +16,6 @@ EMAIL_DESTINATARIO = "info@el4u.it"
 
 st.set_page_config(page_title="Listino B2B", layout="wide")
 
-@st.cache_data
 
 def load_data():
     return pd.read_csv("listino_B2B.csv", dtype=str)
@@ -239,7 +238,7 @@ if st.session_state.show_offer_form:
 <html><body>
 <img src='https://www.el4u.it/media/logo/stores/3/EL4U_1_4_.png' width='200'/><br><br>
 Gentile {azienda},<br>Grazie per averci contattato. Ecco il riepilogo della sua richiesta:<br><br>
-<b>Dati Cliente:</b><br>Email: {email_cliente}<br>Telefono: {telefono}<br><br>
+<b>Dati Cliente:</b><br>Email: {email_cliente}<br>Telefono: {telefono}<br>Note: {note}<br><br>
 <table border='1' cellspacing='0' cellpadding='5'>
 <tr><th>sku</th><th>Descrizione</th><th>Marchio</th><th>Prezzo B2B i.c.</th><th>Prezzo Pubblico</th><th>Quantità</th></tr>
 """
