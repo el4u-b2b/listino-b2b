@@ -73,6 +73,4 @@ SMTP_PASSWORD = "LA_TUA_PASSWORD"
 ## 🔐 Sicurezza
 
 Non committare mai il file con password SMTP nei repository pubblici!
-Aggiornato automaticamente: 2025-05-03 15:36
-
-Aggiornato automaticamente: 2025-05-03 16:06
+Aggiornato automaticamente: 2025-05-03 16:19
