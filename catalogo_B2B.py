@@ -113,15 +113,6 @@ with st.sidebar:
     st.selectbox("Categoria 2° livello", cat2_options, key="filter_cat2", index=cat2_options.index(cat2_val) if cat2_val in cat2_options else 0, on_change=reset_page)
     st.selectbox("Categoria 3° livello", cat3_options, key="filter_cat3", index=cat3_options.index(cat3_val) if cat3_val in cat3_options else 0, on_change=reset_page)
 
-# === Deseleziona tutto ===
-if st.button("❌ Deseleziona tutti i prodotti"):
-    st.session_state.selected_products.clear()
-    for key in list(st.session_state.keys()):
-        if key.startswith("checkbox_"):
-            st.session_state[key] = False
-    st.session_state.page = 1
-    st.rerun()
-
 # === Paginazione ===
 ITEMS_PER_PAGE = 50
 
@@ -136,12 +127,22 @@ if st.session_state.page > total_pages:
 paginated, start_idx, end_idx = get_paginated_data(filtered, st.session_state.page)
 
 # === Titolo finestra ===
-st.title("Listino Prodotti B2B")
+st.title("Listino EL4U B2B")
+st.markdown("Utilizza le funzioni di ricerca, seleziona i prodotti, modifica la quantità poi vai a fondo pagina per richiedere una quotazione personalizzata.")
+
+# === Deseleziona tutto ===
+if st.button("❌ Deseleziona tutti i prodotti"):
+    st.session_state.selected_products.clear()
+    for key in list(st.session_state.keys()):
+        if key.startswith("checkbox_"):
+            st.session_state[key] = False
+    st.session_state.page = 1
+    st.rerun()
 
 # === Tabella ===
 header_cols = st.columns([0.5, 0.7, 1.2, 4, 2, 1.5, 1.5, 1.5])
 header_cols[0].markdown("**Sel.**")
-header_cols[1].markdown("**Quantità**")
+header_cols[1].markdown("**Quantità**")	
 header_cols[2].markdown("**SKU**")
 header_cols[3].markdown("**Descrizione**")
 header_cols[4].markdown("**Marchio**")
