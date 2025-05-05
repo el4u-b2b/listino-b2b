@@ -17,8 +17,16 @@ EMAIL_DESTINATARIO = "info@el4u.it"
 st.set_page_config(page_title="Listino B2B", layout="wide")
 
 # === Accesso con PIN ===
-if st.text_input("Inserisci PIN", type="password") != st.secrets["ACCESS_PIN"]:
-    st.stop()
+if "access_granted" not in st.session_state:
+    st.session_state.access_granted = False
+
+if not st.session_state.access_granted:
+    pin = st.text_input("Inserisci PIN", type="password")
+    if pin == st.secrets["ACCESS_PIN"]:
+        st.session_state.access_granted = True
+        st.rerun()
+    else:
+        st.stop()
 
 def load_data():
     return pd.read_csv("listino_B2B.csv", dtype=str)
