@@ -7,10 +7,6 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import numpy as np
 
-# === Accesso con PIN ===
-if st.text_input("Inserisci PIN", type="password") != st.secrets["ACCESS_PIN"]:
-    st.stop()
-
 # === Configurazione SMTP ===
 SMTP_SERVER = "smtp.office365.com"
 SMTP_PORT = 587
@@ -20,6 +16,9 @@ EMAIL_DESTINATARIO = "info@el4u.it"
 
 st.set_page_config(page_title="Listino B2B", layout="wide")
 
+# === Accesso con PIN ===
+if st.text_input("Inserisci PIN", type="password") != st.secrets["ACCESS_PIN"]:
+    st.stop()
 
 def load_data():
     return pd.read_csv("listino_B2B.csv", dtype=str)
