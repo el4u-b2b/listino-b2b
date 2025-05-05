@@ -140,7 +140,7 @@ if st.button("❌ Deseleziona tutti i prodotti"):
     st.rerun()
 
 # === Tabella ===
-header_cols = st.columns([0.4, 0.6, 1.0, 2.8, 1.3, 1.2, 1.2, 1.0])
+header_cols = st.columns([0.4, 0.6, 1.0, 3.0, 1.3, 1.2, 1.2, 1.0])
 header_cols[0].markdown("**Sel.**")
 header_cols[1].markdown("**Qtà**")
 header_cols[2].markdown("**SKU**")
@@ -152,7 +152,7 @@ header_cols[7].markdown("**Scheda**")
 
 for idx, row in paginated.iterrows():
     sku = row['sku']
-    cols = st.columns([0.4, 0.6, 1.0, 2.8, 1.3, 1.2, 1.2, 1.0])
+    cols = st.columns([0.4, 0.6, 1.0, 3.0, 1.3, 1.2, 1.2, 1.0])
 
     checkbox_key = f"checkbox_{sku}"
     qty_key = f"qty_{sku}"
