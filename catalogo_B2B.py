@@ -23,12 +23,12 @@ if "access_granted" not in st.session_state:
 if not st.session_state.access_granted:
     col1, col2, col3 = st.columns([2, 1.5, 2])
     with col2:
-    pin = st.text_input("🔐 Inserisci PIN per accedere", type="password")
-    if pin == st.secrets["ACCESS_PIN"]:
-        st.session_state.access_granted = True
-        st.rerun()
-    else:
-        st.stop()
+        pin = st.text_input("🔐 Inserisci PIN per accedere", type="password")
+        if pin == st.secrets["ACCESS_PIN"]:
+            st.session_state.access_granted = True
+            st.rerun()
+        else:
+            st.stop()
 
 def load_data():
     return pd.read_csv("listino_B2B.csv", dtype=str)
