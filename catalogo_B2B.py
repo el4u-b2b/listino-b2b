@@ -152,7 +152,7 @@ header_cols[7].markdown("**Scheda**")
 
 for idx, row in paginated.iterrows():
     sku = row['sku']
-    cols = st.columns([0.5, 0.7, 1.2, 4, 2, 1.5, 1.5, 1.5])
+    cols = st.columns([0.4, 0.6, 1.0, 4, 1.3, 1.2, 1.2, 1.0])
 
     checkbox_key = f"checkbox_{sku}"
     qty_key = f"qty_{sku}"
