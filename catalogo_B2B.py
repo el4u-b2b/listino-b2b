@@ -1,6 +1,3 @@
-if st.text_input("Inserisci PIN", type="password") != st.secrets["ACCESS_PIN"]:
-    st.stop()
-
 import streamlit as st
 import pandas as pd
 import smtplib
@@ -9,6 +6,10 @@ from datetime import datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import numpy as np
+
+# === Accesso con PIN ===
+if st.text_input("Inserisci PIN", type="password") != st.secrets["ACCESS_PIN"]:
+    st.stop()
 
 # === Configurazione SMTP ===
 SMTP_SERVER = "smtp.office365.com"
