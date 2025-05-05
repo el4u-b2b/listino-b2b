@@ -1,3 +1,6 @@
+if st.text_input("Inserisci PIN", type="password") != st.secrets["ACCESS_PIN"]:
+    st.stop()
+
 import streamlit as st
 import pandas as pd
 import smtplib
