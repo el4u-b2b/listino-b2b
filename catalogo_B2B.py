@@ -17,7 +17,7 @@ EMAIL_DESTINATARIO = "info@el4u.it"
 st.set_page_config(page_title="Listino B2B", layout="wide")
 
 # === Accesso con PIN via URL (per UptimeRobot) ===
-query_params = st.experimental_get_query_params()
+query_params = st.query_params
 bypass_pin = query_params.get("pin", [""])[0]
 
 if "access_granted" not in st.session_state:
