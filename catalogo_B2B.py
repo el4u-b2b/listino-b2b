@@ -16,19 +16,26 @@ EMAIL_DESTINATARIO = "info@el4u.it"
 
 st.set_page_config(page_title="Listino B2B", layout="wide")
 
-# === Accesso con PIN ===
+# === Accesso con PIN via URL (per UptimeRobot) ===
+query_params = st.experimental_get_query_params()
+bypass_pin = query_params.get("pin", [""])[0]
+
 if "access_granted" not in st.session_state:
     st.session_state.access_granted = False
 
 if not st.session_state.access_granted:
-    col1, col2, col3 = st.columns([2, 1.5, 2])
-    with col2:
-        pin = st.text_input("🔐 Inserisci PIN per accedere", type="password")
-        if pin == st.secrets["ACCESS_PIN"]:
-            st.session_state.access_granted = True
-            st.rerun()
-        else:
-            st.stop()
+    if bypass_pin == st.secrets["ACCESS_PIN"]:
+        st.session_state.access_granted = True
+        st.rerun()
+    else:
+        col1, col2, col3 = st.columns([2, 1.5, 2])
+        with col2:
+            pin = st.text_input("🔐 Inserisci PIN per accedere", type="password")
+            if pin == st.secrets["ACCESS_PIN"]:
+                st.session_state.access_granted = True
+                st.rerun()
+            else:
+                st.stop()
 
 def load_data():
     return pd.read_csv("listino_B2B.csv", dtype=str)
