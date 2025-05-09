@@ -164,31 +164,41 @@ if st.button("❌ Deseleziona tutti i prodotti"):
     st.session_state.page = 1
     st.rerun()
 
-# === Tabella ===
-header_cols = st.columns([0.4, 0.6, 1.0, 3.0, 1.3, 1.2, 1.2, 1.0])
-header_cols[0].markdown("**Sel.**")
+
+# === Tabella corretta ===
+header_cols = st.columns([0.4, 0.6, 1.0, 1.0, 1.5, 3.0, 1.2, 1.2, 1.0])
+header_cols[0].markdown("**S**")
 header_cols[1].markdown("**Qtà**")
 header_cols[2].markdown("**SKU**")
-header_cols[3].markdown("**Descrizione**")
+header_cols[3].markdown("**Img**")
 header_cols[4].markdown("**Marchio**")
-header_cols[5].markdown("**B2B i.c.**")
-header_cols[6].markdown("**Pubblico**")
-header_cols[7].markdown("**Scheda**")
+header_cols[5].markdown("**Descrizione**")
+header_cols[6].markdown("**B2B i.c.**")
+header_cols[7].markdown("**Pubblico**")
+header_cols[8].markdown("**Scheda**")
 
 for idx, row in paginated.iterrows():
     sku = row['sku']
-    cols = st.columns([0.4, 0.6, 1.0, 3.0, 1.3, 1.2, 1.2, 1.0])
+    cols = st.columns([0.4, 0.6, 1.0, 1.0, 1.5, 3.0, 1.2, 1.2, 1.0])
 
     checkbox_key = f"checkbox_{sku}"
     qty_key = f"qty_{sku}"
 
-    selected = cols[0].checkbox(
-    " ",
-    key=checkbox_key,
-    value=sku in st.session_state.selected_products,
-    label_visibility="collapsed"
-)
+    selected = cols[0].checkbox(" ", key=checkbox_key, value=sku in st.session_state.selected_products, label_visibility="collapsed")
     quantity = cols[1].number_input(" ", min_value=1, max_value=9999, value=1, step=1, key=qty_key, label_visibility="collapsed")
+
+    thumb_url = row['thumb_url'] if pd.notna(row['thumb_url']) and row['thumb_url'].strip() else "noimage.png"
+    cols[3].image(thumb_url, width=60)
+
+    cols[2].markdown(sku)
+    cols[4].markdown(row['marchio'])
+    cols[5].markdown(row['descrizione'])
+    cols[6].markdown(f"{row['prezzo_vendita']} €")
+    cols[7].markdown(f"{row['prezzo_pubblico']} €")
+    if pd.notna(row['link_icecat']) and row['link_icecat'].strip():
+        cols[8].markdown(f"[📄 Scheda]({row['link_icecat']})")
+    else:
+        cols[8].markdown("")
 
     if selected:
         st.session_state.selected_products[sku] = {
@@ -201,16 +211,6 @@ for idx, row in paginated.iterrows():
         }
     else:
         st.session_state.selected_products.pop(sku, None)
-
-    cols[2].markdown(sku)
-    cols[3].markdown(row['descrizione'])
-    cols[4].markdown(row['marchio'])
-    cols[5].markdown(f"{row['prezzo_vendita']} €")
-    cols[6].markdown(f"{row['prezzo_pubblico']} €")
-    if pd.notna(row['link_icecat']) and row['link_icecat'].strip():
-        cols[7].markdown(f"[📄 Scheda]({row['link_icecat']})")
-    else:
-        cols[7].markdown("", unsafe_allow_html=True)
 
 # === Navigazione ===
 col_prev, col_info, col_next = st.columns([1, 2, 1])
@@ -284,6 +284,7 @@ info@el4u.it | Wapp: +39 0432 664744</body></html>
                     st.success("✅ Offerta inviata con successo! Ti abbiamo inviato anche una copia della richiesta.")
                 except Exception as e:
                     st.error(f"Errore nell'invio della richiesta: {e}")
+
 
 # === Footer ===
 st.markdown("""
